@@ -1,0 +1,59 @@
+﻿Comandos Linux
+
+
+Cursor do meio do mouse = \textit{copy-paste}
+
+alt + tab = navegação
+
+tab = completar comandos
+
+cd = abrir diretorio
+
+cd ~ = ir ate a raiz
+
+pwd = mostrar diretorio atual
+
+cd .. = sobre um nivel
+
+ps = listando processos na memória
+
+ps -aux | grep udesc | more = lista processos por página
+
+gedit nome_arquivo.txt & = abrir arquivo em background
+
+gedit nome_arquivo.txt = abrindo arquivo
+
+touch teste.tex = criar arquivo
+
+rm x = apagar arquivo
+
+mkdir = criar_diretorio
+
+rmdir = remover_diretorio
+
+cp origem.txt destino.txt = copiar arquivo
+
+cp casa.pdf /media/arch_linux/pgms_prolog/ = copiar arquivo
+
+mv casa.pdf /media/arch_linux/pgms_prolog/ = renomear arquivo
+
+rename atual novo = renomear arquivo
+
+clear = limpar tela
+
+cat append.txt = listar conteudo de um arquivo
+
+append([a,b,c],[d,e], X).
+X = [a, b, c, d, e]
+
+pstree -p = ver a arvore genealogica
+
+crtl shift +/- = aumenta ou diminui
+
+touch teste.tex
+
+pdflatex teste.tex
+
+echo whatever >> y/a = transferindo arquivo para um local que ainda não existe
+
+
