@@ -1,0 +1,63 @@
+Condição de disputa
+
+quando um algoritmo funciona sozinho, ele roda perfeitamente, mas quando é compilado em conjunto 
+com mesmo codigo já executado, pode ocasionar a condição de disputa
+
+Região crítica
+ -> partes do código em que há acesso a memória compartilhada e que pode levar a condições 
+ de disputa
+ -> É necessário haver exclusão mútua entre os processos durante suas regiões críticas.
+ -> Também chamadas de seções críticas
+ 
+Condições para exclusão mútua
+-> 4 condições necessárias para prover exclusão mútua:
+    - Nunca dois processos podem estar simultaneamente em uma região crítica
+    - Nenhuma afirmação sobre velocidades ou número de CPUs
+    - Nenhum processo executando fora de sua região crítica pode bloquear outros processos.
+    - Nenhum processo deve esperar eternamente para entrar em sua região crítica
+
+
+Exclusão mútua com espera ocupada:
+  -> Existem diversas soluções para o problema de exclusão mútua
+  -> Algumas delas se baseiam em espera ocupada(ociosa)
+      - o processo fica em loop até conseguir entrar na seção crítica
+  -> Exemplos:
+    - desabilita interrupções
+    - variáveis de impedimento(lock)
+    - alternância obrgatória
+    - solução de perterson
+    - intrução TSL
+
+Desabilitação de interrupções
+ ->Se as interrupções forem desabilitadas o processo não perde a CPU
+    - transições de estado ocorrem por interrupções de tempo ou E/S
+ -> Poder demais para processos de usuários
+      -> podem deixar de habilitar as interrupções(de propósito ou não)
+ -> Não funciona em multiprocessadores
+ -> Muito usada no núcleo do SO para seções críticas curtas
+    -> exemplo: atualização de listas encadeadas
+
+
+Variáveis de impedimento(lock)
+
+while(lock==1)
+    ; /*loop vazio*/
+lock = 1;
+/*seção crítica*/
+lock = 0;
+/*seção não crítica*/
+
+-> solução sujeita a condição de disputa
+
+-> Alternancia obrigatória(1/2)
+ - cada processo tem a sua vez de entrar na seção crítica
+    - variável turn
+ - Ainda é espera ocupada
+    - desperdício de CPU
+ - Não funciona bem se um dos processos é muito mais lento do que o outro
+    - viola a condição 3
+
+
+
+proxima aula -> exclusão mútua sem espera ocupada página 63
+
