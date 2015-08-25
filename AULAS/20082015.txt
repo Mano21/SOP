@@ -1,0 +1,9 @@
+Para usar as funções da biblioteca Pthread, deve-se incluir o cabeçalho pthread.h
+#include<pthread.h>
+
+compilando o programa com pthreads
+gcc -Wall -pthread -o prog prog.c
+
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr,void *(*start_routine)(void *), void *arg);
+
+pthread_t *thread: identificador(ID) da thread, passado por referencia
