@@ -61,3 +61,111 @@ lock = 0;
 
 proxima aula -> exclusão mútua sem espera ocupada página 63
 
+PROVA 1 SOP - 22/09 
+obs.: VAI ATE COMUNICAÇÃO INTERPROCESSOS
+
+PROVA 2 SOP - 20/10
+PROVA 3 SOP - 26/11
+
+01/09 - atividade a distancia(moodle)
+
+
+
+dia 27082015
+
+SLEEP AND WAKE
+
+ - primitivas simples que causam bloqueio e desbloqueio de processos
+ - sleep() bloqueia o chamador
+ - wakeup(proc) acorda proc
+ - variante: sleep(var) && wakeup(var)
+    - var casa um sleep() com o wakeup() correspondente
+
+
+ 
+ produtor -> | | | | -> Consumidor
+ 
+ condições: 
+ - produtor não pode inserir em buffer cheio -> sincronização
+ - consumidor não pode retirar de buffer vazio -> sincronização
+    exclusão é ignorada na solução de sleep()/wakeup()
+ 
+ -produtor e consumidor não podem acessar o buffer ao mesmo tempo -> exclusão mútua
+ 
+
+/*versão do livro.*/
+
+produtor
+ while(TRUE){  /*número de itens no buffer*/
+  item = produz();/*gera o proximo item*/
+  if(count == N) sleep(); /*se o buffer estiver cheio, vá dormir*/
+  insere (item); /*ponha um item no buffer*/
+  count = count + 1; /*incrementa o contador de itens no buffer*/
+  if(count == 1) wakeup(consumer); /*o buffer estava vazio?*/
+ }
+ 
+ 
+ void consumer(void){
+  int item; 
+  while(){  /*repita para sempre*/
+   if(count == 0) sleep(); /*se o buffer estiver vazio, vá dormir*/
+   item = remove_item(); /*retira o item do buffer*/
+   count = count - 1; /*decresça de um contador de itens no buffer */
+   if(count == N-1) wakeup(producer); /*o buffer estava cheio?*/
+   consume_item(item); /*imprima o item*/
+  }
+ }
+ 
+ 
+ 
+ /*versão do professor*/
+ 
+ produtor
+  while(){
+   item=produz();
+   <espera vaga>
+   insere(item);
+   <acorda cons>
+  }
+ 
+ 
+consumidor
+ while(TRUE){
+  <espera item>
+  item = retira();
+  <acorda prod>
+  consome<item>;
+ }
+ 
+
+
+condição de disputa na solução
+ - buffer vazio
+ - consumidor verifica count == 0 e perde o processador antes do sleep()
+ - produtor insere um item, incrementa count e chama wakeup(consumer)
+ - consumidor não recebe o wakeup(), executa o sleep() e nunca mais acorda
+ - solução simples: usar um bit para armazenar um wakeup() perdido
+   - não resolve se mais de um processo se puder chamar wakeup()
+
+
+Semaforos
+Dijkstra
+ - semaforo S conta o número de wakeup()s pendentes
+ - duas primitivas atômicas:
+   - down(S): decrementa S; se S < 0, bloqueia
+   - up(S): incrementa S; se S <= 0, acorda um processo que esta esperando por S
+
+
+tipos de semaforos
+ - binários = inicializados em 1, controlam acesso a seção crítica,
+ váriavel mutex na solução
+ - contadores = sinconizam processos, determinam a ordem de execução,váriaveis full
+ e empty na solução
+ 
+ 
+ 
+ ESPERA -> DOWN()
+ LIBERA -> UP()
+ SINALIZA
+ 
+
