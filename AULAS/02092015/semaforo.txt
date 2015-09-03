@@ -1,0 +1,63 @@
+Semáforos
+
+ - um semáforo S conta o número de wakeup()s pendentes
+ - duas primitivas atômicas:
+     - down(S):decrementar S; se S < 0, bloqueia
+     - up(S): incrementa S, se <= 0, acorda um processo que está esperando por S
+     
+ - Semáforos são implementados no núcleo do SO
+ - O semáforo é uma váriavel limitada
+ - Dificuldade é garantir a atomicidade das operações down() e up()
+ - Uso de soluções com espera ocupada
+    -> desabilitação de interrupções
+    -> instrução TSL
+
+
+O que acontece quando um processo executa signal()?
+  ->siginal-and-exit
+      -> o processo atual deve sair do monitor após o signal()
+      -> o processo sinalizado entra no monitor
+  ->signal-and-continue
+      ->o processo atual continua executando
+      ->o processo sinalizado compete pelo monitor no próximo escalonamento
+      
+
+Monitores em Java
+ -> java tem suporte parcial a monitores atráves de métodos synchonized
+ -> Exclusão mútua no acesso ao objeto
+    ->apenas para métodos synchronized
+    ->o que acontece se há métodos não synchronized?
+    
+-> Uma única váriavel de condição anônima e implícita
+-> Operações: wait(),notify(),notifyAll()
+-> Semântica: signal-and-continue
+
+
+Semáforos VS. Monitores
+Monitores são mais fáceis de programar e reduzem a probabilidade de erros
+  -> ordem de down() e up()
+Monitores dependem de linguagem de programação, enquanto semáforos são 
+implementados pelo SO
+    -> podem ser usados com C, Java, BASIC, ASM....
+    
+Ambos podem ser usados apensas em sistemas centralizados(com memória compartilhada)
+  -> sistemas distribuidos usam trocas de mensagens
+  
+  
+
+==> Troca de mensagens 
+  -> Baseado em primitivas send() e receive()
+  -> Usado em sistemas distribuidos
+  
+==>Questões em Projetos
+  ->confiabilidade(perda ou duplicação de mensagens)
+  -> desempenhos em sistemas centralizados
+      -> overhead para cópia de mensagens é maior do que para as operações com 
+      semáforos e monitores.
+      
+      
+
+
+==> Barreiras
+
+
