@@ -1,0 +1,10 @@
+int *ptr,rc,fd;
+
+fd = shm_open("/shm", O_RDWR | O_CREAT, R_IRUSR | S_IWUSR); ==> objeto mem. compartilhada
+if(fd == -1) exit(1);
+rc = ftruncate(fd,sizeof(int));
+if(rc == -1) exit(2);
+ptr = mmap(NULL,sizeof(int),PROT_READ | PROT_WRITE, MAP_SHARED,fd,0); ==> obtem um ponteiro
+para mem.
+
+if(ptr == MAP_FAILED) exit(3);
