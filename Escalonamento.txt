@@ -1,0 +1,93 @@
+Conceito de escalonamento:
+
+ - Um requisito násico de sistemas multiprogramados é decidir qual processo
+ deve executar a seguir e por quanto tempo...
+     - o componente do SO que faz isso é o escalonador (scheduler)
+     - o escalonador implementa um algoritmo de escalonamento
+     
+ 
+ - Algoritmos de escalonamento podem diferir nos seus objetivos -> o que se deseja
+ priorizar?
+     - todos visam a usar a CPU de modo eficiente
+         - chaveamentos de contexto são caros
+         
+
+
+ - Em geral, processos alternam ciclos de CPU com ciclos de requisições de E/S
+     - o processo executa várias instruções de máquina e faz uma chamada de 
+     sistema solicitando um serviço do SO
+    
+ - Existem duas grandes classes de processos:
+     - orientação a CPU(CPU - bound)
+     - orientados a E/S (I/O - bound)
+     - há processos que alternam as características
+     
+  
+  Existem diversas situações em que o escalonador é invocado
+   - na criação de um processo
+   - no encerramento de um processo
+   - quando um processo bloqueia
+   - quando ocorre uma interrupção de E/S
+   - quando ocorre uma interrupção de relógio
+     - escalonamento preemptivo
+     
+  
+  escalonamento preemptivo e não preemptivo
+     - no escalonamento não preemptivo, um processo só pára de executar na CPU se
+     quiser
+        - invocação de uma chamada de sistema
+        - liberação voluntária da CPU
+     - no escalonamento preemptivo um processo pode perder a CPU mesmo contra
+     sua vontade
+       - preempção por tempo(mais comum)
+       - preempção por prioridade
+          - chegada de um processo mais prioritário
+          
+       - além das possibiliddes do não preemptivo
+       
+  
+  Algoritmos de escalonamento:
+    1 - Primeiro a chegar, primeiro a ser servido(FCFS)
+    2 - Job mais curto primeiro (SJF)
+    3 - Próximo de menor tmpo restante
+
+  Escalonamento para sistemas interativos:
+    1 - Alternância circular(round-robin)
+    2 - Por Prioridades
+    3 - Filas múltiplas
+    4 - Fração Justa
+    
+  
+  
+  FCFS
+  Processos são atendidos por ordem de chegadas
+    - primeiro a chegar, primeiro a ser servido
+    - first come, first served(FCFS)
+  
+  
+  O Processo escalonado usa a CPU por quanto tempo qusier - não preemptivo
+    - até encerrar, bloquear ou entregar o controle
+  
+  Simples de implementar
+  
+  Não diferencia processos orientados a CPU e orientados a E/S
+    - pode prejudicar os orientados a E/S
+    
+  
+  SJF(Shortest Job First)
+  
+  Os processos mais curtos são atendidos primeiro
+    - mais curto = menor tempo de CPU
+  Não preemptivo
+  Algoritmo com menor tempo médio de retorno
+  Premissas
+    - todos os jobs estão disponiveis simultaneamente
+    - a duraçãodos ciclos de CPU é conhecida a priori
+  
+  
+  
+  
+  
+  
+  
+  
