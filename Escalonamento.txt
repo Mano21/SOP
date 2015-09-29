@@ -85,6 +85,34 @@ Conceito de escalonamento:
     - a duraçãodos ciclos de CPU é conhecida a priori
   
   
+  Próximo de menor tempo restante
+    - Shortest remaining time next(SRTN)
+    - Variante preemptiva do SJF
+    - Garante bom desempenho para Jobs curtos
+    - requer tempos conhecidos de CPU
+  
+  
+  Alternancia circular (round-robin)
+    - Cada processo que ganha a CPU executa durante um determinado tempo (o quantum)
+    - Se o Processo não liberar a CPU, ao final do quantum ele perde o processador
+    e volta para a fila de prontos
+      - algoritmo preemptivo
+    
+    
+ 
+ Determinando o quantum
+   - A decisão de projeto mais importante no round robin é o tamanho do quantum
+   - Quanto menor o quantum, maior o overhead
+     - tempo para chaveamento de contexto se aproxima do tempo de execução
+   - quanto maior o quantum, pior o tempo de reação
+    - ocorrem menos preempções
+    - processo demora mais a ser escalonado
+    - prejudica processos orientados a E/S
+   - Na pratica, o quantum fica entre 20 e 100 ms
+   
+ 
+ 
+ 
   
   
   
