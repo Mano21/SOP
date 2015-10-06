@@ -1,0 +1,48 @@
+Como lidar com programas maiores do que a memória física disponível?
+  A primeira solução foi a introdução de overlays
+    o programados dividia o programa em módulos que eram carregados e descarregados
+    da memória semi-manualmente
+  
+  
+  A solução mais definitiva veio com a memória virtual.
+    espaço de endereçamento lógico(dos processos) é mapeado em um espaço de endereça
+    mento físico.
+    
+    mapeamento permite usar regiões não contíguas na memória física.
+    nem todo o espaço de endereçamento lógico precisa ser mapeado na memória física
+    em um dado instante.
+      apenas as partes efetivamente usadas são mantidas na memória física, as demais 
+      são mantidas no disco e carregados quando necessário.
+      
+  
+  
+  Endereço Lógico e Físico
+  
+  Pág Lógica          Pág Física
+  0                       2
+  1                       0
+  2                       1
+  3                       3
+  6                       4
+  
+  
+  EL = 2000 => Pág = 2
+              Desl = 000
+              
+  
+  EL = 2 | 345 => P=2
+                  d = 345
+  EF = 1345
+  
+  EL = 0256
+  EF = 2256
+  
+  EL = 6789
+  EF = 4789
+  
+  EL = 4567
+  EF = ?567
+  
+  
+  
+  
